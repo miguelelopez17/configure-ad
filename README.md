@@ -45,14 +45,6 @@ This tutorial outlines the implementation of on-premises Active Directory within
   <img src="https://i.imgur.com/XyEmv8f.png" height="75%" width="100%" alt="vm windows"/>
 
 
-  Set the Domain Controller’s NIC Private IP address to be static:
-
-
-  <img src="https://i.imgur.com/KHU9kC4.png" height="75%" width="100%" alt="static ip"/>
-
-
-  <img src="https://i.imgur.com/rFpHLdQ.png" height="75%" width="100%" alt="topology"/>
-
 
 <h3 align="center">Ensure Connectivity between the client and Domain Controller</h3>
 
@@ -78,7 +70,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <h3 align="center">Installing Active Directory</h3>
 
 
-Next, I installed Active Directory Domain Services on DC-1 and promoted it to a Domain Controller by creating a new forest called mydomain.com (or myadproject.com).
+Next, I installed Active Directory Domain Services on DC-1 and promoted it to a Domain Controller by creating a new forest.
 
 
   <img src="https://i.imgur.com/A1V9XJ5.png" height="75%" width="100%" alt="active directory install"/>
@@ -93,23 +85,17 @@ Next, I installed Active Directory Domain Services on DC-1 and promoted it to a 
   <img src="https://i.imgur.com/DCFUVrM.png" height="75%" width="100%" alt="set new forest"/>
 
 
- After the system rebooted, I logged into DC-1 using the domain account mydomain.com\labuser.
-
-
-  <img src="https://i.imgur.com/7UakWMQ.png" height="75%" width="100%" alt="fqdn login"/>
-
-
 <h3 align="center">Create an Admin and Normal User Account in AD</h3>
 
 
- Inside Active Directory Users and Computers (ADUC), I created two Organizational Units (OUs): _EMPLOYEES and _ADMINS.
+ Inside Active Directory Users and Computers, I created two Organizational Units.
 
 
   <img src="https://i.imgur.com/cYmv0r7.png" height="75%" width="100%" alt="organizational unit"/>
   <img src="https://i.imgur.com/v02CBPI.png" height="75%" width="100%" alt="organizational unit"/>
 
 
-  I then created a new user named Jane Doe with the username jane_admin and added her to the “Domain Admins” security group. Afterward, I logged out and logged back into DC-1 using the new admin credentials mydomain.com\jane_admin
+  I then created a new user named Jane Doe and added her to the “Domain Admins” security group. Afterward, I logged out and logged back into DC-1 using the new admin credentials.
 
 
   <img src="https://i.imgur.com/h546E6L.png" height="75%" width="100%" alt="admin creation"/>
@@ -118,24 +104,19 @@ Next, I installed Active Directory Domain Services on DC-1 and promoted it to a 
   <img src="https://i.imgur.com/mnLwTgq.png" height="75%" width="100%" alt="security group"/>
 
 
- Afterward, I logged out and logged back into DC-1 using the new admin credentials mydomain.com\jane_admin
+ I logged out and logged back into DC-1 using the new admin credentials.
 
 
   <img src="https://i.imgur.com/xWZ4Kol.png" height="75%" width="100%" alt="admin login"/>
 
 
-<h3 align="center">Join Client-1 to your domain (myadproject.com)</h3>
+<h3 align="center">Join Client-1 to your domain </h3>
 
 
 From the Azure portal, I changed Client-1's DNS settings to point to DC-1’s private IP address and restarted the VM.</p>
 
-  <img src="https://i.imgur.com/1KRsjI6.png" height="75%" width="100%" alt="client dns settings"/>
-
 
   I then logged into Client-1 as the local admin and joined the computer to the domain mydomain.com.
-
-
-  <img src="https://i.imgur.com/50wszcP.png" height="75%" width="100%" alt="domain joining"/>
 
 
   After the machine restarted, I logged into DC-1 and confirmed in ADUC that Client-1 appeared under the “Computers” container, then moved it into the _CLIENTS OU after creating it.
@@ -155,7 +136,7 @@ From the Azure portal, I changed Client-1's DNS settings to point to DC-1’s pr
 <h3 align="center">Bulk Create Users and Configure Lockout Policy</h3>
 
 
- Back on DC-1, I opened PowerShell ISE as an administrator and ran a script to automatically generate 10,000 user accounts inside the _EMPLOYEES OU.I tested account lockout by logging in with incorrect credentials multiple times, causing the account to be locked. I then reset the password and unlocked the account through ADUC. Finally, I modified the domain’s Group Policy settings to lock user accounts after 5 failed login attempts, with a 30-minute lockout duration. 
+ Back on DC-1, I opened PowerShell as an administrator and ran a script to automatically generate 10,000 user accounts. I tested account lockout by logging in with incorrect credentials multiple times, causing the account to be locked. I then reset the password and unlocked the account. I modified the domain’s Group Policy settings to lock user accounts after 5 failed login attempts, with a 30-minute lockout duration. 
 
 
   <img src="https://i.imgur.com/0i8uApf.png" height="75%" width="100%" alt="create users script"/>
