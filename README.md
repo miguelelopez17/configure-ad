@@ -70,7 +70,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <h3 align="center">Installing Active Directory</h3>
 
 
-Next, I installed Active Directory Domain Services on DC-1 and promoted it to a Domain Controller by creating a new forest.
+ I installed Active Directory Domain Services on DC-1 and promoted it to a Domain Controller by creating a new forest.
 
 
   <img src="https://i.imgur.com/A1V9XJ5.png" height="75%" width="100%" alt="active directory install"/>
@@ -107,16 +107,13 @@ Next, I installed Active Directory Domain Services on DC-1 and promoted it to a 
  I logged out and logged back into DC-1 using the new admin credentials.
 
 
-  <img src="https://i.imgur.com/xWZ4Kol.png" height="75%" width="100%" alt="admin login"/>
-
-
 <h3 align="center">Join Client-1 to your domain </h3>
 
 
 From the Azure portal, I changed Client-1's DNS settings to point to DC-1’s private IP address and restarted the VM.</p>
 
 
-  I then logged into Client-1 as the local admin and joined the computer to the domain mydomain.com.
+  I then logged into Client-1 as the local admin and joined the computer to the domain.
 
 
   After the machine restarted, I logged into DC-1 and confirmed in ADUC that Client-1 appeared under the “Computers” container, then moved it into the _CLIENTS OU after creating it.
