@@ -18,13 +18,13 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <h2>High-Level Deployment and Configuration Steps</h2>
 
-- Create Resources
-- Ensure Connectivity between the client and Domain Controller
-- Install Active Directory
-- Create an Admin and Normal User Account in AD
-- Join Client-1 to your domain (myadproject.com)
-- Set up Remote Desktop for non-administrative users on Client-1
-- Create additional users and attempt to log into client-1 with one of the users
+- Create Resources.
+- Ensure Connectivity between the client and the Domain Controller.
+- Install Active Directory.
+- Create an Admin and Normal User Account in AD.
+- Join Client-1 to your domain.
+- Set up Remote Desktop for non-administrative users on Client-1.
+- Create additional users and attempt to log into client-1 with one of the users.
 
 <h2>Deployment and Configuration Steps</h2>
 
@@ -147,7 +147,6 @@ After creating the users, I selected one account and attempted to log into Clien
 
   <img src="https://i.imgur.com/ZZCfiCp.png" height="75%" width="100%" alt="employee user accounts"/>
   <img src="https://i.imgur.com/7gBpNzN.png" height="75%" width="100%" alt="employee user selection"/>
-  <img src="https://i.imgur.com/cqsddjn.png" height="75%" width="100%" alt="employee user login"/>
 
 
 This tutorial demonstrated how to deploy and configure a fully functional Active Directory environment using Azure Virtual Machines, simulating both cloud-based and traditional on-prem infrastructure. Building a manageable environment complete with domain services, DNS settings, user provisioning, and group policy configuration.
